@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#grid {
+    disaplay: flex;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+
+
+.square {
+    flex-basis: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid black;
+}
+
+.square10{
+    flex-basis: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid black;
+}
+
+.square9{
+    flex-basis: calc(100% / 9);
+    height: calc(100% / 9);
+    border: 1px solid black;
+}
+
+.square7{
+    flex-basis: calc(100% / 7);
+    height: calc(100% / 7);
+    border: 1px solid black;
+}
+
+.clicked-red{
+    background-color: red;
+}
+
+.clicked-green{
+    background-color: green;
+}
