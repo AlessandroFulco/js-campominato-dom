@@ -17,26 +17,74 @@ La partita termina quando il giocatore clicca su una bomba o raggiunge il numero
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba
 */
 
-// salviamo il contenitore della griglia
-const gridEl = document.getElementById('grid');
 
-const createMyElement = () => {
+const btn = document.querySelector('button');
+const lvl = document.getElementById('level');
+
+
+
+const createMyElement = (classDiv) => {
     const node = document.createElement('div');
-    node.className = 'square';
+    node.className = classDiv;
     return node;
 }
 
+btn.addEventListener('click', 
+
+    () => {
+        // salviamo il contenitore della griglia
+        const gridEl = document.getElementById('grid');
+
+        // variabili per salvare il la quantità di celle da far stampare e la classe da assegnare base alle classi
+        let nCells, classCells;
+
+       
 
 
 
+
+        // svuota griglia ogni volta che si preme il bottone per creare la nuova griglia
+        gridEl.innerHTML = "";
+        
+        const selectLvl = parseInt(lvl.value);
+
+        // switch per assegnare quantità celle e classe scelta
+        switch(selectLvl){
+            case 0:
+            default:
+                nCells = 100;
+                classCells = "square10";
+                break;
+            case 1:
+                nCells = 81;
+                classCells = "square9";
+                break;
+            case 2:
+                nCells = 49;
+                classCells = "square7";
+                break;
+        }
+
+        const newArrRandom = createRandUniqueArr(nCells, 1, nCells);
+        
+        for (let i = 0; i < newArrRandom.length; i++) {
+            const divEl = createMyElement(classCells);
+            
+            let arrItem = newArrRandom[i];
+        
+            
+            divEl.addEventListener('click',
+            function(){ 
+                divEl.append(arrItem);
+                this.classList.add('clicked')
+            });
+            gridEl.append(divEl);
+        }
+    });
 
 
 // funzioni del programma
-
 // creazione array random senza doppioni
-
-
-
 function createRandUniqueArr(numItems, min, max) {
     const arrUni = [];
     while(arrUni.length < numItems) {
@@ -50,20 +98,7 @@ function createRandUniqueArr(numItems, min, max) {
 
 // funzione che crea un numero random
 function getRandomNumMinMax(min, max) {
-    let result = Math.floor(Math.random() * (max - min)) + min;
+    let result = Math.floor(Math.random() * (max - min + 1)) + min;
     return result;
 }
 
-
-console.log(createRandUniqueArr(100, 1, 100));
-
-
-function pariODispari(numeroCheck) {
-    let risultato;
-    if(numeroCheck % 2 === 0) {
-        risultato = "pari"
-    } else {
-        risultato = "dispari"
-    }
-    return risultato;
-}
