@@ -21,7 +21,7 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 const btn = document.querySelector('button');
 const lvl = document.getElementById('level');
 
-
+let punteggio = 0;
 
 const createMyElement = (classDiv) => {
     const node = document.createElement('div');
@@ -64,20 +64,35 @@ btn.addEventListener('click',
                 classCells = "square7";
                 break;
         }
-
+        console.log(nCells);
         const newArrRandom = createRandUniqueArr(nCells, 1, nCells);
-        
+        const bomb = createRandUniqueArr(16, 1, nCells);
+        console.log(bomb);
         for (let i = 0; i < newArrRandom.length; i++) {
             const divEl = createMyElement(classCells);
-            
             let arrItem = newArrRandom[i];
-        
             
             divEl.addEventListener('click',
-            function(){ 
-                divEl.append(arrItem);
-                this.classList.add('clicked')
-            });
+                function(){ 
+
+                    divEl.append(arrItem);
+                    this.classList.add('clicked');
+                    punteggio++;
+
+                    for (let j = 0; j < bomb.length; j++) {
+                        let bombItem = bomb[j];
+
+                            if(arrItem === bombItem) {
+                                divEl.innerHTML = bombItem;
+                                this.classList.add('clicked-red');
+                                punteggio--;
+                            }
+                    }
+                    
+                }
+            );
+            
+            
             gridEl.append(divEl);
         }
     });
@@ -101,4 +116,5 @@ function getRandomNumMinMax(min, max) {
     let result = Math.floor(Math.random() * (max - min + 1)) + min;
     return result;
 }
+
 
