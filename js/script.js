@@ -74,29 +74,24 @@ btn.addEventListener('click',
             
             divEl.addEventListener('click',
                 function(){ 
-
                     divEl.append(arrItem);
                     this.classList.add('clicked');
                     punteggio++;
-
                     for (let j = 0; j < bomb.length; j++) {
                         let bombItem = bomb[j];
-
                             if(arrItem === bombItem) {
                                 divEl.innerHTML = bombItem;
                                 this.classList.add('clicked-red');
                                 punteggio--;
+                                alert("la partita è terminata, il tuo punteggio è: " + punteggio);
+                                gridEl.innerHTML = "";
                             }
-                    }
-                    
+                    }  
                 }
             );
-            
-            
             gridEl.append(divEl);
         }
     });
-
 
 // funzioni del programma
 // creazione array random senza doppioni
