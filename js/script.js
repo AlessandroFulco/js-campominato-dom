@@ -87,6 +87,9 @@ btn.addEventListener('click',
                                 gridEl.innerHTML = "";
                             }
                     }  
+                    if(punteggio === (nCells - 16)){
+                        alert("hai effettuato il punteggio massimo");
+                    }
                 }
             );
             gridEl.append(divEl);
